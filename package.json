@@ -1,0 +1,17 @@
+{
+  "name": "socket.io83",
+  "version": "0.0.1",
+  "description": "try socket.io",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.13.3",
+    "node-uuid": "^1.4.7",
+    "socket.io": "^1.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iampaul83",
+  "license": "ISC"
+}

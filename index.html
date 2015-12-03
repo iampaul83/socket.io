@@ -1,0 +1,43 @@
+<h1>Socket.io</h1>
+<h2>當前在線人數：<span id="persons"></span></h2>
+<input type="text" id="myName"/>
+<ul id="list"></ul>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var myId = null;
+  var myName = document.getElementById('myName');
+  var list = document.getElementById('list');
+  var socket = io.connect();
+
+  function onInput() {
+    socket.emit('name', myName.value);
+  }
+
+  socket.on('person', function (data) {
+    document.getElementById('persons').innerHTML = data;
+    //socket.emit('my other event', { my: 'data' });
+  });
+
+  socket.on('id', function(data) {
+    console.log('my id', data)
+    myId = data;
+    myName.onchange = onInput;
+  });
+
+  socket.on('new-name', function(data) {
+    if(data.id === myId) return;
+    console.log('new-name', data);
+    if(target = document.getElementById(data.id)) {
+      target.innerHTML = data.name;
+    }
+    else {
+      list.innerHTML += `<li id="${data.id}">${data.name}</li>`
+    }
+  });
+
+  socket.on('del-person', function(data) {
+    console.log('del-person', data);
+    document.getElementById(data).remove();
+  });
+
+</script>

@@ -15,6 +15,7 @@ io.on('connection', function (socket) {
   var id = uuid.v1();
   socket.emit('init', {id: id, online: personList});
   socket.on('disconnect', function () {
+    delete personList[id];
     person('disconn');
     io.emit('del-person', id);
   });

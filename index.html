@@ -35,7 +35,8 @@
       target.innerHTML = data.name;
     }
     else {
-      list.innerHTML += `<li id="${data.id}">${data.name}</li>`
+        var li = '<li id="' + id + '">' + data.online[id] + '</li>'
+        list.innerHTML += li;
     }
   });
 

@@ -18,9 +18,13 @@
     //socket.emit('my other event', { my: 'data' });
   });
 
-  socket.on('id', function(data) {
-    console.log('my id', data)
-    myId = data;
+  socket.on('init', function(data) {
+    console.log('init', data)
+    myId = data.id;
+    for (var id in data.online) {
+        var li = '<li id="' + id + '">' + data.online[id] + '</li>'
+        list.innerHTML += li;
+    }
     myName.onchange = onInput;
   });
 

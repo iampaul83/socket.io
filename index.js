@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 io.on('connection', function (socket) {
   person('conn');
   var id = uuid.v1();
-  socket.emit('id', id);
+  socket.emit('init', {id: id, online: personList});
   socket.on('disconnect', function () {
     person('disconn');
     io.emit('del-person', id);

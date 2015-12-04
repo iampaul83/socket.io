@@ -37,6 +37,7 @@
     else {
         var li = '<li id="' + data.id + '">' + data.name + '</li>'
         list.innerHTML += li;
+        notifyMe(data.name + '上線了')
     }
   });
 
@@ -44,5 +45,35 @@
     console.log('del-person', data);
     document.getElementById(data).remove();
   });
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+});
+
+function notifyMe(noti) {
+  if (!Notification) {
+    alert('Desktop notifications not available in your browser. Try Chromium.');
+    return;
+  }
+
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+  else {
+    var notification = new Notification('Notification title', {
+      icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+      body: noti,
+    });
+
+    // notification.onclick = function () {
+    //   window.open("http://stackoverflow.com/a/13328397/1269037");
+    // };
+
+  }
+
+}
 
 </script>
